@@ -1,3 +1,5 @@
-<h1>
-  {{title}}
-</h1>
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+<router-outlet></router-outlet>
+<app-appfooter></app-appfooter>
