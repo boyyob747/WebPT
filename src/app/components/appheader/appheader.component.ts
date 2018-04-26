@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appheader.component.css']
 })
 export class AppheaderComponent implements OnInit {
-
+  
   constructor() { }
 
   ngOnInit() {
+   
   }
 
 }

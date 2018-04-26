@@ -14,12 +14,25 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppthuchienkhaosatComponent } from './components/appthuchienkhaosat/appthuchienkhaosat.component';
 import { ApplienheComponent } from './components/applienhe/applienhe.component';
 import { LoadingModule } from 'ngx-loading';
+import { DataService } from './data.service';
+import { AppthongtincanhanComponent } from './components/appthongtincanhan/appthongtincanhan.component';
+import { AppusersComponent } from './components/appusers/appusers.component';
+import { AppkhaosatComponent } from './components/appkhaosat/appkhaosat.component';
+import { AppsinhvienComponent } from './components/appsinhvien/appsinhvien.component';
+import { ApptruongComponent } from './components/apptruong/apptruong.component';
+import { AppnganhComponent } from './components/appnganh/appnganh.component';
+import { AppthongkeComponent } from './components/appthongke/appthongke.component';
+import { AppbaocaoComponent } from './components/appbaocao/appbaocao.component';
+import { AppthemuserComponent } from './components/appthemuser/appthemuser.component';
 const routes : Routes = [
   {path : '' , redirectTo: '/trangchu',pathMatch : 'full'},
   {path : 'login' , component:ApploginComponent},
   {path : 'trangchu' , component:ApptrangchuComponent},
   {path : 'lienhe' , component:ApplienheComponent},
   {path : 'khaosat' , component:AppthuchienkhaosatComponent},
+  {path : 'thongtincanhan' , component:AppthongtincanhanComponent},
+  {path : 'danhsachuser' , component:AppusersComponent},
+  {path : 'themuser' , component:AppthemuserComponent},
   {path : '**' , redirectTo : '/trangchu'}
 ]
 @NgModule({
@@ -32,16 +45,28 @@ const routes : Routes = [
     ApptrangchuComponent,
     ApploginComponent,
     AppthuchienkhaosatComponent,
-    ApplienheComponent
+    ApplienheComponent,
+    AppthongtincanhanComponent,
+    AppusersComponent,
+    AppkhaosatComponent,
+    AppsinhvienComponent,
+    ApptruongComponent,
+    AppnganhComponent,
+    AppthongkeComponent,
+    AppbaocaoComponent,
+    AppthemuserComponent,
+    
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    LoadingModule
+    LoadingModule,
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}

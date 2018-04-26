@@ -1,22 +1,40 @@
  const express = require('express');
  const router = express.Router();
  const mysql = require('mysql');
-
- var con = mysql.createConnection({
-     host:"localhost",
-     user: "root",
-     password : "",
-     database : "ad01_db"
- });
  
- router.get('/show', function(req,res){
-    con.connect(function(error){
+ router.post('/dologin', function(req, res, next) {
+     const username = req.body.username;
+     const password = req.body.password;
+     var sql = "SELECT UserID,COUNT(username) as isCanLogin FROM `user` WHERE username = '"+username+"' AND password = '"+password+"'";
+	res.locals.connection.query(sql, function (error, results, fields) {
+		if (error) throw error;
+		res.send(JSON.stringify({"status": 200 ,"error": null, "response": results}));
+	});
+});
+router.post('/thongtinuser', function(req, res, next) {
+    const userId = req.body.userId;
+    var sql = "SELECT user.UserID,user.name, user.username, user.email, user.DiaChi, user.GioiTinh, CAST(user.NgaySinh AS DATE) as NgaySinh, user.SoDienThoai, user.TrangThai, chucvu.TenCV FROM user INNER JOIN chucvu ON user.MaChucVu=chucvu.MaCV WHERE user.UserID='"+userId+"'";
+   res.locals.connection.query(sql, function (error, results, fields) {
+       if (error) throw error;
+       res.send(JSON.stringify({"status": 200 ,"error": null, "response": results}));
+   });
+});
+router.get('/users', function(req, res, next) {
+   res.locals.connection.query('SELECT * FROM `user`', function (error, results, fields) {
+       if (error) throw error;
+       res.send(JSON.stringify({"status": 200 ,"error": null, "response": results}));
+   });
+});
+router.get('/danhsachusers', function(req, res, next) {
+    res.locals.connection.query('SELECT `UserID`, `name`, `username`, `email`, `GioiTinh`, `NgaySinh`,`TrangThai` FROM `user` ', function (error, results, fields) {
         if (error) throw error;
-        con.query("SELECT * FROM vocabularies", function (err, result, fields) {
-            if (err) throw err;
-            console.log(result);
-          });
-    })
- })
- 
+        res.send(JSON.stringify({"status": 200 ,"error": null, "response": results}));
+    });
+ });
+ router.get('/chucvu', function(req, res, next) {
+    res.locals.connection.query('SELECT `MaCV`, `TenCV` FROM `chucvu`', function (error, results, fields) {
+        if (error) throw error;
+        res.send(JSON.stringify({"status": 200 ,"error": null, "response": results}));
+    });
+ });
  module.exports = router; // for fix error Router.use() requires a middleware function but got a Object

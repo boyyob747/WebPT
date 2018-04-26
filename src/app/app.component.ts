@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DataService } from './data.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public loading = false;
-  title = 'app works!';
+  
+  cookieValue = 'false';
+  constructor(){
+  }
+  ngOnInit() { 
+  }
 }
