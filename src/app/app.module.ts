@@ -62,7 +62,7 @@ const routes : Routes = [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes),
-    LoadingModule,
+    LoadingModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

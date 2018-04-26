@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-appmenu',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AppmenuComponent implements OnInit {
   public isLogined = false;
   public mUsername = "";
-  constructor() { }
+  constructor(private router:Router) { }
 
   ngOnInit() {
     if (localStorage.getItem('isLogined') == 'true'){
@@ -25,4 +26,7 @@ export class AppmenuComponent implements OnInit {
       localStorage.removeItem('userId');
     }
   }
+  test(){
+    this.router.navigate['/trangchu'];
+   }
 }
